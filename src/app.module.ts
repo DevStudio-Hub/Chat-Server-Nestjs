@@ -5,11 +5,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { SearchModule } from './search/search.module';
 import { ModelsModule } from './models/modules/models.module';
-import { ChatModule } from './chat/chat.module';
 import { getMessagesAndRoomsModule } from './getMessagesAndRooms/getMessAndRoom.module';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
+    ChatModule,
     AuthModule,
     MongooseModule.forRoot(`mongodb://admin:Astro123@localhost:27017/Service?authSource=admin`),
     SearchModule,
@@ -25,9 +26,8 @@ import { getMessagesAndRoomsModule } from './getMessagesAndRooms/getMessAndRoom.
       }),
     }),
     ModelsModule,
-    ChatModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [ChatModule],
 })
 export class AppModule {}

@@ -15,7 +15,7 @@ import { ModelsModule } from 'src/models/modules/models.module';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET') || 'root_Chat_App',
-        signOptions: { expiresIn: '15h' },
+        signOptions: { expiresIn: '15d' },
       }),
     }),
   ],

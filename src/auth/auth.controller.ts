@@ -72,8 +72,13 @@ export class AuthController {
 
   @Post('LogOut')
   LogOut(@Res({ passthrough: true }) res: Response) {
-    res.clearCookie('token', { httpOnly: true, secure: true });
-    return { success: true, isLogin: true, message: 'logout successfully' };
+    res.clearCookie('token', {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax',
+      maxAge: 15 * 24 * 60 * 60 * 1000,
+    });
+    return { success: true, isLogOut: true, message: 'logout successfully' };
   }
 
   @Post('Update-Bio')
